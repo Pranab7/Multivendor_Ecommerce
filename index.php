@@ -1,3 +1,3 @@
 <?php
 
-echo "<h1>This is the title</h1>";
+echo "<h1>This is from apache</h1>";
