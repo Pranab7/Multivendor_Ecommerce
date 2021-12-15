@@ -1,7 +1,6 @@
 <?php
    session_start();
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -106,15 +105,15 @@
             <input id="tab2" type="radio" name="tabs">
             <label for="tab2">Most Response</label>
             <input id="tab3" type="radio" name="tabs">
-            <label for="tab3">Recently Answered</label>
+            <label for="tab3">Recently Bought</label>
             <input id="tab4" type="radio" name="tabs">
-            <label for="tab4">No Answer</label>
+            <label for="tab4">Bought</label>
             <input id="tab5" type="radio" name="tabs">
             <label for="tab5">Recent Post</label>
 
             <!--  End of content-1------>
             <section id="content4">
-              <!--No answered Content Section -->
+              <!--Content Section 1-->
               <div class="question-type2033">
                 <div class="row">
                   <div class="col-md-1">
@@ -124,21 +123,21 @@
                   <div class="col-md-9">
                     <div class="right-description893">
                       <div id="que-hedder2983">
-                        <h3><a href="Forum_post-deatils.html" target="_blank">This is my first Question</a></h3>
+                        <h3><a href="Forum_post-deatils.html" target="_blank">This is my first Product</a></h3>
                       </div>
                       <div class="ques-details10018">
                         <p>Duis dapibus aliquam mi, eget euismod sem scelerisque ut. Vivamus at elit quis urna adipiscing iaculis.Duis dapibus aliquam mi, eget euismod sem scelerisque ut. Vivamus at elit quis urna adipiscing iaculis.</p>
                       </div>
                       <hr>
-                      <div class="ques-icon-info3293"> <a href="#"><i class="fa fa-check check-color329" aria-hidden="true"> solved</i></a> <a href="#"><i class="fa fa-star" aria-hidden="true"> 5</i> </a> <a href="#"><i class="fa fa-folder"
-                            aria-hidden="true"> wordpress</i></a> <a href="#"><i class="fa fa-clock-o" aria-hidden="true"> 4 min ago</i></a> <a href="#"><i class="fa fa-comment" aria-hidden="true"> 5 answer</i></a> <a href="#"><i
+                      <div class="ques-icon-info3293"> <a href="#"><i class="fa fa-check check-color329" aria-hidden="true"> Bought</i></a> <a href="#"><i class="fa fa-star" aria-hidden="true"> 5</i> </a> <a href="#"><i class="fa fa-folder"
+                            aria-hidden="true"> Price</i></a> <a href="#"><i class="fa fa-clock-o" aria-hidden="true"> 4 min ago</i></a> <a href="#"><i class="fa fa-comment" aria-hidden="true"> 5 Comment</i></a> <a href="#"><i
                             class="fa fa-user-circle-o" aria-hidden="true"> 70 view</i> </a> </div>
                     </div>
                   </div>
                   <div class="col-md-2">
                     <div class="ques-type302">
                       <a href="#">
-                        <button type="button" class="q-type238"><i class="fa fa-comment" aria-hidden="true"> 333335 answer</i></button>
+                        <button type="button" class="q-type238"><i class="fa fa-comment" aria-hidden="true"> 5 interested</i></button>
                       </a>
                       <a href="#">
                         <button type="button" class="q-type23 button-ques2973"> <i class="fa fa-user-circle-o" aria-hidden="true"> 70 view</i> </button>
@@ -152,7 +151,7 @@
 
 
             <section id="content5">
-              <!--Recent Question Content Section -->
+              <!--Content Section 2-->
               <div class="question-type2033">
                 <div class="row">
                   <div class="col-md-1">
@@ -162,20 +161,20 @@
                   <div class="col-md-9">
                     <div class="right-description893">
                       <div id="que-hedder2983">
-                        <h3><a href="post-deatils.html" target="_blank">This is my first Question</a></h3>
+                        <h3><a href="post-deatils.html" target="_blank">This is my first Product</a></h3>
                       </div>
                       <div class="ques-details10018">
                         <p>Duis dapibus aliquam mi, eget euismod sem scelerisque ut. Vivamus at elit quis urna adipiscing iaculis.Duis dapibus aliquam mi, eget euismod sem scelerisque ut. Vivamus at elit quis urna adipiscing iaculis.</p>
                       </div>
                       <hr>
-                      <div class="ques-icon-info3293"> <a href="#"><i class="fa fa-star" aria-hidden="true"> 5 </i> </a> <a href="#"><i class="fa fa-folder" aria-hidden="true"> wordpress</i></a> <a href="#"><i class="fa fa-clock-o"
+                      <div class="ques-icon-info3293"> <a href="#"><i class="fa fa-star" aria-hidden="true"> 5 </i> </a> <a href="#"><i class="fa fa-folder" aria-hidden="true"> Price</i></a> <a href="#"><i class="fa fa-clock-o"
                             aria-hidden="true"> 4 min ago</i></a> <a href="#"><i class="fa fa-question-circle-o" aria-hidden="true"> Question</i></a> <a href="#"><i class="fa fa-bug" aria-hidden="true"> Report</i></a> </div>
                     </div>
                   </div>
                   <div class="col-md-2">
                     <div class="ques-type302">
                       <a href="#">
-                        <button type="button" class="q-type238"><i class="fa fa-comment" aria-hidden="true"> 333335 answer</i></button>
+                        <button type="button" class="q-type238"><i class="fa fa-comment" aria-hidden="true"> 33 interested</i></button>
                       </a>
                       <a href="#">
                         <button type="button" class="q-type23 button-ques2973"> <i class="fa fa-user-circle-o" aria-hidden="true"> 70 view</i> </button>
