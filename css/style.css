@@ -32,7 +32,7 @@ a:active {
 .main-header{
   margin: 0;
   padding: 0.5%;
-  background-image: linear-gradient(to right, #dfd5b4 ,#e9efeb);
+  background-image: linear-gradient(to right, #a0987e ,#051f0d);
 }
 input[type=text], input[type=password],input[type=date] {
   width: 100%;
@@ -245,12 +245,12 @@ ul.Signup01{
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  color: white;
+  color: rgb(163, 133, 133);
   font-weight: 900;
 }
 .footer{
   text-align: left;
-  background-image: linear-gradient(to right, #dfd5b4 ,#e9efeb);
+  background-image: linear-gradient(to right, #462681 ,#6ab884);
   font-family: 'Alegreya Sans', sans-serif;
 }
 .footer a {
@@ -269,6 +269,6 @@ ul.Signup01{
     box-shadow: 0 1px 0 0 rgba(255, 255, 255, 0.1);
     border: none;
     resize: none;
-    color: #d1d2d2;
+    color: #cad3d3;
     padding: 0.7em 1em;
 }
