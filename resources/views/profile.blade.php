@@ -256,15 +256,15 @@
             <h4>Popular Questions</h4>
             <div class="news-info209">
               <h5>You Noob?</h5>
-              <p>Just ask</p> <small>July 16, 2017</small>
+              <p>Just ask</p> <small>Dec 16, 2021</small>
             </div>
             <div class="news-info209">
               <h5>How to dance</h5>
-              <p> Dance</p> <small>July 16, 2017</small>
+              <p> Dance</p> <small>Dec 16, 2021</small>
             </div>
             <div class="news-info209">
               <h5>How to find garena</h5>
-              <p>https//garena.com</p> <small>July 16, 2017</small>
+              <p>https//garena.com</p> <small>Dec 16, 2021</small>
             </div>
           </div>
         </div>
