@@ -1,11 +1,11 @@
-@import url(https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,300,600,700);
-
 * {
   margin: 0;
   padding: 0;
 }
 
 body {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
   background-color: #F3F3F3;
 }
 
@@ -110,10 +110,15 @@ hr {
   border-color: #2F3239;
   padding: 20px;
 }
-
+.navbar-brand {
+  display: flex;
+  width: 100px;
+  height: auto;
+}
 .navbar-brand>img {
   display: block;
-  margin-top: -20px;
+  width: 100%;
+  height: auto;
 }
 
 .navbar-default .navbar-nav>li>a {
@@ -2207,6 +2212,16 @@ h5:hover {
 
 .profile-picture {
   border-radius: 50%;
-  height: 80px;
-  width: 70px;
+  height: 55px;
+  width: 55px;
+  object-fit: cover;
+}
+.post_form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 20px 0px ;
+}
+.post_form form {
+  width: 500px;
 }
