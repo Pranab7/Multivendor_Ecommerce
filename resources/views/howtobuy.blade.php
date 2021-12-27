@@ -33,7 +33,10 @@
                 <ul class="nav navbar-nav"> </ul>
                 <ul class="nav navbar-nav navbar-right">
                 <li><a href="{{ route('home') }}">Home</a></li>
-            
+                <li><a class="active" href="/howtobuy">How to buy and Sell</a></li>
+                @if(Auth::user())
+                <li><a href="/admin">Admin</a></li>
+                @endif
                 <!-- Drop down semple -->
                 <!-- <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Games <span class="caret"></span></a>
                     <ul class="dropdown-menu animated zoomIn">
@@ -45,22 +48,23 @@
                     <li><a href="#" target="_blank"> 404 </a></li>
                     </ul>
                 </li> -->
-
+                @if(Auth::user())
                 <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Orders<span class="caret"></span></a>
                     <ul class="dropdown-menu animated zoomIn">
                     <li><a href="/buying" >My Orders (buying)</a></li>
                     <li><a href="/selling" >My Orders (selling)</a></li>
                     </ul>
                 </li>
-
+                @endif
                 <li><a href="#contact">Contact us</a></li>
+
 
                 @if(Auth::user())
                 
                 <li class="dropdown" style="margin-left: 30px"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ Auth::user()->name }} <span class="caret"></span></a>
                     <ul class="dropdown-menu animated zoomIn">
                     <li><a href="/editProfile" > Edit Profile </a></li>
-                    <li><a href="/post">post </a> </li>
+                    <li><a href="/post">post</a> </li>
                     <li><a href="{{ route('dashboard') }}" > Dashboard </a></li>
                 <!-- logout  -->
                     <li>
@@ -78,13 +82,13 @@
                     </ul>
                 </li>
                 <li>
-                    <img class="profile-picture" 
-                    @if(empty($userInfo)) 
-                    src="{{ asset('image/default.png') }}"
-                    @else
-                    src="{{ asset('storage') }}/{{$userInfo['user_image']}}"
-                    @endif
-                    alt="">
+                <img class="profile-picture" 
+                @if(empty($userInfo)) 
+                src="{{ asset('image/default.png') }}"
+                @else
+                src="{{ asset('storage') }}/{{$userInfo['user_image']}}"
+                @endif
+                alt="">
                 </li>
                 @else
                 <li><a href="{{ route('login') }}">Login </a> </li>
@@ -98,67 +102,23 @@
             <!-- /.container-fluid -->
         </nav>
         </div>
+        <section class="container-sm">
+            <div class="questions">
+        <div class="p-5 text-center bg-light"  style="margin-top: 58px;">
+           <h1 class="mb-3">How to buy</h1>
+           <h4 class="mb-3">Most frequent question</h4>
+           <p class="mb-3 text-info"> Go to the Home page and click buy button.After that check the My orders(Buying) at the Top.It will show the status pending then you have to pay the amount through Bkash (8800192784388).Ref will be your Username and game name.Once you paid the amount you will change the Action from not paid to paid. Then you will get the accounts details within 3days.If payment is not completed within 7 days the account will be again displayed for others. Feel free to contact us for any query or questions. </p>
+           <h1 class="mb-3">Is it safe?</h1>
+           <p class="mb-3 text-info">Yes, we check the validity of the account before giving it to you. If we cant deliver the product we will contact you and return your payment. Your account safety is granted.</p>
+           <h1 class="mb-3">How to Sell?</h1>
+           <p class="mb-3 text-info">Post your game account in post pages. Once your account is sold you will get your payment.You can cancel your post at any time you want.<p>
+        </div>
+        <!-- Jumbotron -->
 
+            </div>
 
-        <section class="container">
-            <div class="post_form">
-             
-                  
-             
-                <form method="post" action="{{ route('edit') }}" enctype="multipart/form-data" >    
-                    @csrf 
-                    <input type="hidden"  name="user_id" 
-                
-                     value="{{ Auth::user()->id }}"
-                   
-                      />
-                    <div class="form-group row">
-                        <div class="col-sm-10">
-                            <img style="width: 200px; height: 200px;object-fit: cover;margin-bottom: 10px"  
-                        
-                            @if(empty($userInfo)) 
-                            src="{{ asset('image/default.png') }}"
-                            @else
-                            src="{{ asset('storage') }}/{{$userInfo['user_image']}}"
-                            @endif
-                         
-                            alt="profile image" />
-                            <input type="file" name="user_image" class="form-control" id="customFile" />
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                            <label class="col-sm-2 col-form-label">
-                                Name
-                            </label>
-                            <div class="col-sm-10">
-                            <input type="text" name="user_name" class="form-control" id="text" value="{{ Auth::user()->name }}">
-                        </div>
-                    </div>
-                   <div class="form-group row">
-                        <label for="staticEmail" class="col-sm-2 col-form-label">Email</label>
-                        <div class="col-sm-10">
-                            <input type="text" name="email" class="form-control" id="staticEmail" value="{{ Auth::user()->email }}">
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="inputPassword" class="col-sm-2 col-form-label">Phone No</label>
-                        <div class="col-sm-10">
-                        <input type="text" name="phone_no" class="form-control" id="inputPassword"
-                        @isset($userInfo)
-                         value="{{$userInfo['phone_no']}}"
-                         @endisset
-                         >
-                        </div>
-                    </div>
-                   
-                    <button type="submit" style="float: right;" class="btn btn-primary">Change</button>
-                </form>
-
-            </div> 
-        
         </section>
-
-        </div> 
+        
         <!--    footer -->
         <section class="footer-part">
         <div class="container">
@@ -202,19 +162,18 @@
                 </a>
                 </div>
             </div>
-           <!-- contact form -->
-            <div class="col-md-3" id="contact">
+            <div class="col-md-3">
             <form>
-                <div class="form-group">
-                <label for="exampleFormControlInput1">Email address</label>
-                <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
-                </div>
-                <div class="form-group">
-                <label for="exampleFormControlTextarea1">Example textarea</label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                <button class="btn btn-primary" type="submit">Submit form</button>
-                </div>
-            </form>
+        <div id="contact" class="form-group">
+        <label for="exampleFormControlInput1">Email address</label>
+        <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+        </div>
+        <div class="form-group">
+        <label for="exampleFormControlTextarea1">Example textarea</label>
+        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+        <button class="btn btn-primary" type="submit">Submit form</button>
+        </div>
+    </form>
             </div>
             
             </div>

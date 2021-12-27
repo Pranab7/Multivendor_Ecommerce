@@ -32,7 +32,7 @@
           <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span
                 class="icon-bar"></span> <span class="icon-bar"></span> </button>
-            <a class="navbar-brand" href="Main_index.html"><img src="image/logo.png" class="img-responsive"width="30%" h alt="Logo"></a>
+            <a class="navbar-brand" href="{{ route('home') }}"><img src="image/logo.png" class="img-responsive"width="30%" h alt="Logo"></a>
           </div>
           <!-- Collect the nav links, forms, and other content for toggling -->
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -54,24 +54,24 @@
 
               <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Orders<span class="caret"></span></a>
                 <ul class="dropdown-menu animated zoomIn">
-                  <li><a href="/selling" >My Orders (buying)</a></li>
+                  <li><a href="/buying" >My Orders (buying)</a></li>
                   <li><a href="/selling" >My Orders (selling)</a></li>
                 </ul>
               </li>
 
-              <li><a href="Forum_contact_us.html" target="_blank">Contact us</a></li>
+              <li><a href="#contact">Contact us</a></li>
 
               @if(Auth::user())
             
-              <li class="dropdown" style="margin-left: 30px"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">User Name <span class="caret"></span></a>
+              <li class="dropdown" style="margin-left: 30px"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ Auth::user()->name }} <span class="caret"></span></a>
                 <ul class="dropdown-menu animated zoomIn">
                 <li><a href="/editProfile" > Edit Profile </a></li>
-                  <li><a href="#" > Settings </a></li>
-                  <li><a href="/post">post </li>
+                <li><a href="/post">post </a> </li>
+                  <li><a href="{{ route('dashboard') }}" > Dashboard </a></li>
               <!-- logout  -->
                   <li>
                     <!-- Authentication -->
-                    <form method="POST" action="{{ route('logout') }}">
+                    <form method="POST" class="logout-frm" action="{{ route('logout') }}">
                               @csrf
 
                               <x-dropdown-link :href="route('logout')"
@@ -84,7 +84,13 @@
                 </ul>
               </li>
               <li>
-                <img class="profile-picture" src="image/M23.jpg" alt="">
+              <img class="profile-picture" 
+                @if(empty($userInfo)) 
+                src="{{ asset('image/default.png') }}"
+                @else
+                src="{{ asset('storage') }}/{{$userInfo['user_image']}}"
+                @endif
+                alt="">
               </li>
               @else
               <li><a href="{{ route('login') }}">Login </a> </li>
@@ -100,52 +106,48 @@
     </div>
 
 
-    <!--======= welcome section on top background=====-->
-    <section class="welcome-part-one">
-      <div class="container">
-        <div class="welcome-demop102 text-center">
-          <h2>Welcome to Trolland </h2>
-          <p>Duis dapibus aliquam mi, eget euismod sem scelerisque ut. Vivamus at elit quis urna adipiscing iaculis. Curabitur vitae velit in neque dictum blandit. Proin in iaculis neque. Pellentesque
-            <br> habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Curabitur vitae velit in neque dictum blandit</p>
-          <div class="button0239-item">
-            <a href="#">
-              <button type="button" class="aboutus022">About Us</button>
-            </a>
-            <a href="#">
-              <button type="button" class="join92">Join Now</button>
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
+  <!-- post section -->
     <section class="container">
       <div class="post_form">
-    <form>
+            <form method="post" action="{{route('post')}}" enctype="multipart/form-data" >
+              @csrf
+              <input  type="hidden" name="user_id" value={{ Auth::user()->id }} />
                 <div class="form-group">
-                    <div class="form-group">
-                        <label for="formGroupExampleInput2">Game</label>
-                        <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Name of the game">
-                      </div>
-                    <label for="formGroupExampleInput">Email</label>
-                    <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Email">
-                  </div>
-                  <div class="form-group">
-                    <label for="formGroupExampleInput2">password</label>
-                    <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="password">
-                  </div>
-                  <div class="form-group">
-                    <label for="formGroupExampleInput2">Security Question and Answers</label>
-                    <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Security Question and Answers">
-                  </div>
-                  <div class="form-group">
-                    <label for="formGroupExampleInput2">Contact info</label>
-                    <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Contact info">
-                  </div>
-                
-                
+                    <label for="formGroupExampleInput2">Game</label>
+                    <input type="text" name="game_name" class="form-control" id="formGroupExampleInput2" placeholder="Name of the game">
+                </div>
+                <div class="form-group">
+                  <label for="formGroupExampleInput">Email</label>
+                  <input type="text" name="game_email" class="form-control" id="formGroupExampleInput" placeholder="Email">
+                </div>
+                <div class="form-group">
+                  <label for="formGroupExampleInput2">password</label>
+                  <input type="password" name="game_password" class="form-control" id="formGroupExampleInput2" placeholder="password">
+                </div>
+                <div class="form-group">
+                  <label for="formGroupExampleInput2">Select Image</label>
+                  <input type="file" name="game_image" class="form-control" id="formGroupExampleInput2" >
+                </div>
+                <div class="form-group">
+                  <label for="formGroupExampleInput2">Details</label>
+                  <input type="text" name="game_details" class="form-control" id="formGroupExampleInput2" placeholder="Game details">
+                </div>
+              
+                <div class="form-group">
+                  <label for="formGroupExampleInput2">Security Question and Answers</label>
+                  <input type="text" name="question" class="form-control" id="formGroupExampleInput2" placeholder="Security Question and Answers">
+                </div>
+                <div class="form-group">
+                  <label for="formGroupExampleInput2">Price</label>
+                  <input type="number" name="price" class="form-control" id="formGroupExampleInput2" placeholder="৳-00" >
+                </div>
+                <div class="form-group">
+                  <label for="formGroupExampleInput2">Contact info</label>
+                  <input type="text" name="contact" class="form-control" id="formGroupExampleInput2" placeholder="Contact info">
+                </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
-              </form>
-</div>
+            </form>
+      </div>
 
     </section>
     
@@ -193,18 +195,19 @@
               </a>
             </div>
           </div>
-          <div class="col-md-3">
+          <!-- contact form -->
+          <div class="col-md-3" id="contact">
           <form>
-    <div class="form-group">
-      <label for="exampleFormControlInput1">Email address</label>
-      <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
-    </div>
-    <div class="form-group">
-      <label for="exampleFormControlTextarea1">Example textarea</label>
-      <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-      <button class="btn btn-primary" type="submit">Submit form</button>
-    </div>
-  </form>
+            <div class="form-group">
+             <label for="exampleFormControlInput1">Email address</label>
+              <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+           </div>
+           <div class="form-group">
+            <label for="exampleFormControlTextarea1">Example textarea</label>
+            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+            <button class="btn btn-primary" type="submit">Submit form</button>
+           </div>
+         </form>
           </div>
         
         </div>

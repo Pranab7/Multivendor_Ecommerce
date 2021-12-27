@@ -32,18 +32,16 @@
         <div class="navbar-header">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span
               class="icon-bar"></span> <span class="icon-bar"></span> </button>
-          <a class="navbar-brand" href="{{ route('home') }}"><img src="image/logo.png" class="img-responsive"width="30%" h alt="Logo"></a>
+          <a class="navbar-brand" href="Main_index.html"><img src="image/logo.png" class="img-responsive"width="30%" h alt="Logo"></a>
         </div>
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav"> </ul>
           <ul class="nav navbar-nav navbar-right">
-            <li><a class="active" href="{{ route('home') }}">Home</a></li>
+            <li><a href="{{ route('home') }}">Home</a></li>
             <li><a href="/howtobuy">How to buy and Sell</a></li>
             @if(Auth::user())
-            @if($userCategory == "admin")
-            <li><a href="/admin">Admin</a></li>
-            @endif
+            <li><a class="active" href="/admin">Admin</a></li>
             @endif
          
             <!-- Drop down semple -->
@@ -57,20 +55,17 @@
                 <li><a href="#" target="_blank"> 404 </a></li>
               </ul>
             </li> -->
-
-            
-            @if(Auth::user())
+            <li><a href="/pendingOrders" >Pending Orders</a></li>
             <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Orders<span class="caret"></span></a>
               <ul class="dropdown-menu animated zoomIn">
-                <li><a href="/buying" >My Orders (buying)</a></li>
-                <li><a href="/selling" >My Orders (selling)</a></li>
+                <li><a href="/allUserBuying" >All users Orders(buying)</a></li>
+                <li><a href="/allUserSelling" >All users Orders (selling)</a></li>
               </ul>
             </li>
-            @endif
-            <li><a href="#contact">Contact us</a></li>
+            
+            <li><a href="#contact">Contact us</a></li>>
 
             @if(Auth::user())
-
            
             <li class="dropdown" style="margin-left: 30px"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ Auth::user()->name }} <span class="caret"></span></a>
               <ul class="dropdown-menu animated zoomIn">
@@ -93,12 +88,12 @@
               </ul>
             <li>
             <img class="profile-picture" 
-              @if(empty($userInfo)) 
-              src="{{ asset('image/default.png') }}"
-              @else
-              src="{{ asset('storage') }}/{{$userInfo['user_image']}}"
-              @endif
-              alt="">
+            @if(empty($userInfo)) 
+            src="{{ asset('image/default.png') }}"
+            @else
+            src="{{ asset('storage') }}/{{$userInfo['user_image']}}"
+            @endif
+            alt="">
             </li>
             @else
             <li><a href="{{ route('login') }}">Login </a> </li>
@@ -113,9 +108,9 @@
     </nav>
   </div>
 
-  <!-- <h1>{{ $userCategory }}</h1> -->
+
   <!--======= welcome section on top background=====-->
-  <section class="welcome-part-one">
+  <!-- <section class="welcome-part-one">
     <div class="container">
       <div class="welcome-demop102 text-center">
         <h2>Welcome to Trolland </h2>
@@ -135,15 +130,15 @@
         </div>
       </div>
     </div>
-  </section>
+  </section> -->
 
 
   <!-- ======content section/body=====-->
-  <section class="container " style="margin-top: 20px">
-        <h1>Games</h1>
-        <hr />
+  <section class="container">
+        <h1>My Games</h1>
+        <hr/>
            <div class="card-group">
-            @foreach($userPost as $post) 
+           @foreach($userPost as $post) 
               <div class="card" style="margin: 30px 0px;">
                 <img class="card-img-top" src="{{asset('storage')}}/{{$post->game_image}}"  alt="Card image cap">
                     <div class="card-body">
@@ -155,7 +150,8 @@
                     </div>
                 </div>
             @endforeach
-             <!-- <div class="card" style="margin: 30px 0px;">
+
+             <!-- <div class="card">
                <img class="card-img-top" src="/image/blog-2-806x440.png"  alt="Card image cap">
                    <div class="card-body">
                        <h5 class="card-title">Card title</h5>
@@ -164,9 +160,9 @@
                           <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
                           <button type="button" class="btn btn-primary">Buy now</button>
                    </div>
-              </div> -->
+              </div>
 
-               <!-- <div class="card">
+               <div class="card">
                  <img class="card-img-top" src="/image/blog-2-806x440.png" alt="Card image cap">
                    <div class="card-body">
                      <h5 class="card-title">Card title</h5>
@@ -175,9 +171,9 @@
                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
                        <button type="button" class="btn btn-primary">Buy now</button>
                     </div>
-                </div> -->
+                </div>
 
-               <!-- <div class="card">
+               <div class="card">
                   <img class="card-img-top" src="/image/blog-2-806x440.png" alt="Card image cap">
                   <div class="card-body">
                     <h5 class="card-title">Card title</h5>

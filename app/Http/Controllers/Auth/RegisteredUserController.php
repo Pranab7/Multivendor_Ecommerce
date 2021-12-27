@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
+use App\Models\UserCategory;
 
 class RegisteredUserController extends Controller
 {
@@ -45,6 +46,12 @@ class RegisteredUserController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
+        $userCategory = new UserCategory;
+        
+        $userCategory->email = $request->email;
+        $userCategory->user_category = "user";
+        $userCategory->save();
+        
         event(new Registered($user));
 
         Auth::login($user);

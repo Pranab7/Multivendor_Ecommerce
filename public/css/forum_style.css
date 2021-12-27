@@ -1,3 +1,7 @@
+html {
+  scroll-behavior: smooth;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -2224,4 +2228,39 @@ h5:hover {
 }
 .post_form form {
   width: 500px;
+}
+.logout-frm {
+  width: 100%;
+}
+
+.logout-frm > * {
+  width: 100%;
+  display: block;
+  padding: 8px 20px;
+}
+.questions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 20px 0px ;
+  padding-right: 220px;
+  padding-left: 220px;
+}
+.active  {
+  color: #fff;
+  background-color: #ae0505;
+  border-radius: 3px;
+  padding: 8px 25px 8px 20px;
+}
+
+.card {
+  width: 45.33%;
+  float: left;
+  margin: 15px !important;
+  display: inline-block;
+}
+.card > img {
+  width: 100%;
+  height: 380px;
+  object-fit: cover;
 }

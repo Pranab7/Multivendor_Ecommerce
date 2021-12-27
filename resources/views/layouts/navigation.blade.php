@@ -38,6 +38,12 @@
 
                     <x-slot name="content">
                         <!-- Authentication -->
+                        <a href="{{ route('edit') }}"
+                         style="font-size: 0.875rem;
+                         padding: 0.5rem 1rem;
+                         "
+
+                         >Edit Profile</a>
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
 
@@ -49,6 +55,7 @@
                         </form>
                     </x-slot>
                 </x-dropdown>
+               
             </div>
 
             <!-- Hamburger -->

@@ -48,19 +48,19 @@
 
                 <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Orders<span class="caret"></span></a>
                     <ul class="dropdown-menu animated zoomIn">
-                    <li><a href="/buying" >My Orders (buying)</a></li>
+                    <li><a href="/selling" >My Orders (buying)</a></li>
                     <li><a href="/selling" >My Orders (selling)</a></li>
                     </ul>
                 </li>
 
-                <li><a href="#contact">Contact us</a></li>
+                <li><a href="#contact" target="_blank">Contact us</a></li>
 
                 @if(Auth::user())
                 
                 <li class="dropdown" style="margin-left: 30px"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ Auth::user()->name }} <span class="caret"></span></a>
                     <ul class="dropdown-menu animated zoomIn">
                     <li><a href="/editProfile" > Edit Profile </a></li>
-                    <li><a href="/post">post </a> </li>
+                    <li><a href="/post">post </li>
                     <li><a href="{{ route('dashboard') }}" > Dashboard </a></li>
                 <!-- logout  -->
                     <li>
@@ -78,13 +78,13 @@
                     </ul>
                 </li>
                 <li>
-                    <img class="profile-picture" 
-                    @if(empty($userInfo)) 
-                    src="{{ asset('image/default.png') }}"
-                    @else
-                    src="{{ asset('storage') }}/{{$userInfo['user_image']}}"
-                    @endif
-                    alt="">
+                <img class="profile-picture" 
+                @if(empty($userInfo)) 
+                src="{{ asset('image/default.png') }}"
+                @else
+                src="{{ asset('storage') }}/{{$userInfo['user_image']}}"
+                @endif
+                alt="">
                 </li>
                 @else
                 <li><a href="{{ route('login') }}">Login </a> </li>
@@ -98,67 +98,49 @@
             <!-- /.container-fluid -->
         </nav>
         </div>
+        <section >
+    <div class="container">
+        <div  id="outContainer" style="width:100%;">
+            <h4 class = "text-center text-black pt-2">My Buying Products</h4>
+            <hr>
+
+            <table id="example" class="table table-bordered table-striped table-hover bookshell" style="width:100%;" align="center">
+                <thead>
+                <tr>
+                    <th scope="col">Game Name</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Password</th>
+                    <th scope="col">security QA</th>
+                    <th scope="col">Bkash number</th>
+                    <th scope="col">Action</th>
 
 
-        <section class="container">
-            <div class="post_form">
-             
-                  
-             
-                <form method="post" action="{{ route('edit') }}" enctype="multipart/form-data" >    
-                    @csrf 
-                    <input type="hidden"  name="user_id" 
-                
-                     value="{{ Auth::user()->id }}"
-                   
-                      />
-                    <div class="form-group row">
-                        <div class="col-sm-10">
-                            <img style="width: 200px; height: 200px;object-fit: cover;margin-bottom: 10px"  
-                        
-                            @if(empty($userInfo)) 
-                            src="{{ asset('image/default.png') }}"
-                            @else
-                            src="{{ asset('storage') }}/{{$userInfo['user_image']}}"
-                            @endif
-                         
-                            alt="profile image" />
-                            <input type="file" name="user_image" class="form-control" id="customFile" />
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                            <label class="col-sm-2 col-form-label">
-                                Name
-                            </label>
-                            <div class="col-sm-10">
-                            <input type="text" name="user_name" class="form-control" id="text" value="{{ Auth::user()->name }}">
-                        </div>
-                    </div>
-                   <div class="form-group row">
-                        <label for="staticEmail" class="col-sm-2 col-form-label">Email</label>
-                        <div class="col-sm-10">
-                            <input type="text" name="email" class="form-control" id="staticEmail" value="{{ Auth::user()->email }}">
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="inputPassword" class="col-sm-2 col-form-label">Phone No</label>
-                        <div class="col-sm-10">
-                        <input type="text" name="phone_no" class="form-control" id="inputPassword"
-                        @isset($userInfo)
-                         value="{{$userInfo['phone_no']}}"
-                         @endisset
-                         >
-                        </div>
-                    </div>
-                   
-                    <button type="submit" style="float: right;" class="btn btn-primary">Change</button>
-                </form>
+                </tr>
+                <tr>
+                    <th scope="col">Game Name</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Password</th>
+                    <th scope="col">security QA</th>
+                    <th scope="col">Bkash number</th>
+                    <th scope="col">Action</th>
+                    <td><button class='btn btn-primary' onclick=''>Edit</button>
+				    <button class='btn btn-primary' onclick=''>Delete</button></td>
 
-            </div> 
+
+                </tr>
+                </thead>
+
+
+
+            </table>
+        </div>
+    </div>
+</div>
+</table>
+</section>
         
-        </section>
-
-        </div> 
         <!--    footer -->
         <section class="footer-part">
         <div class="container">
@@ -202,19 +184,18 @@
                 </a>
                 </div>
             </div>
-           <!-- contact form -->
-            <div class="col-md-3" id="contact">
+            <div class="col-md-3">
             <form>
-                <div class="form-group">
-                <label for="exampleFormControlInput1">Email address</label>
-                <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
-                </div>
-                <div class="form-group">
-                <label for="exampleFormControlTextarea1">Example textarea</label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                <button class="btn btn-primary" type="submit">Submit form</button>
-                </div>
-            </form>
+        <div class="form-group">
+        <label for="exampleFormControlInput1">Email address</label>
+        <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+        </div>
+        <div class="form-group">
+        <label for="exampleFormControlTextarea1">Example textarea</label>
+        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+        <button class="btn btn-primary" type="submit">Submit form</button>
+        </div>
+    </form>
             </div>
             
             </div>

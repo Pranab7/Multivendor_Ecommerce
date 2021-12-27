@@ -6,6 +6,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="csrf-token" content="{{ csrf_token() }}">
         <title>GamerOn Fire</title>
         <link href="css/forum_bootstrap.css" rel="stylesheet" type="text/css">
         <link href="css/forum_style.css" rel="stylesheet" type="text/css">
@@ -25,7 +26,7 @@
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span
                     class="icon-bar"></span> <span class="icon-bar"></span> </button>
-                <a class="navbar-brand" href="Main_index.html"><img src="image/logo.png" class="img-responsive"width="30%" h alt="Logo"></a>
+                <a class="navbar-brand" href="{{ route('home') }}"><img src="image/logo.png" class="img-responsive"width="30%" h alt="Logo"></a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -47,24 +48,24 @@
 
                 <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Orders<span class="caret"></span></a>
                     <ul class="dropdown-menu animated zoomIn">
-                    <li><a href="/selling" >My Orders (buying)</a></li>
+                    <li><a href="/buying" >My Orders (buying)</a></li>
                     <li><a href="/selling" >My Orders (selling)</a></li>
                     </ul>
                 </li>
 
-                <li><a href="Forum_contact_us.html" target="_blank">Contact us</a></li>
+                <li><a href="#contact" target="_blank">Contact us</a></li>
 
                 @if(Auth::user())
                 
-                <li class="dropdown" style="margin-left: 30px"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">User Name <span class="caret"></span></a>
+                <li class="dropdown" style="margin-left: 30px"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ Auth::user()->name }} <span class="caret"></span></a>
                     <ul class="dropdown-menu animated zoomIn">
                     <li><a href="/editProfile" > Edit Profile </a></li>
-                    <li><a href="#" > Settings </a></li>
                     <li><a href="/post">post </li>
+                    <li><a href="{{ route('dashboard') }}" > Dashboard </a></li>
                 <!-- logout  -->
                     <li>
                         <!-- Authentication -->
-                        <form method="POST" action="{{ route('logout') }}">
+                        <form method="POST" class="logout-frm" action="{{ route('logout') }}">
                                 @csrf
 
                                 <x-dropdown-link :href="route('logout')"
@@ -77,7 +78,13 @@
                     </ul>
                 </li>
                 <li>
-                    <img class="profile-picture" src="image/M23.jpg" alt="">
+                <img class="profile-picture" 
+                @if(empty($userInfo)) 
+                src="{{ asset('image/default.png') }}"
+                @else
+                src="{{ asset('storage') }}/{{$userInfo['user_image']}}"
+                @endif
+                alt="">
                 </li>
                 @else
                 <li><a href="{{ route('login') }}">Login </a> </li>
@@ -102,10 +109,24 @@
                 <tr>
                     <th scope="col">Game Name</th>
                     <th scope="col">Email</th>
-                    <th scope="col">Genre</th>
                     <th scope="col">Status</th>
                     <th scope="col">Password</th>
+                    <th scope="col">security QA</th>
+                    <th scope="col">Bkash number</th>
                     <th scope="col">Action</th>
+
+
+                </tr>
+                <tr>
+                    <th scope="col">Game Name</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Password</th>
+                    <th scope="col">security QA</th>
+                    <th scope="col">Bkash number</th>
+                    <th scope="col">Action</th>
+                    <td><button class='btn btn-primary' onclick=''>Edit</button>
+				    <button class='btn btn-primary' onclick=''>Delete</button></td>
 
 
                 </tr>
