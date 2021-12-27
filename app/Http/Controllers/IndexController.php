@@ -14,8 +14,12 @@ class IndexController extends Controller
     public function getIndex() {
         $id = Auth::id();
         $userInfo = UserContact::where('user_id', $id)->first();
-        $email = Auth::user()->email;
-        $userCategory = UserCategory::where('email', $email)->first()->user_category;
+        if(Auth::user() != null){
+            $email = Auth::user()->email;
+            $userCategory = UserCategory::where('email', $email)->first()->user_category;
+        } else {
+            $userCategory = "null";
+        }
         // $userPost = Post::where('user_id', $id)->get();
         $userPost = Post::all();
         return view('index', compact('userInfo', 'userPost', 'userCategory'));
@@ -55,10 +59,20 @@ class IndexController extends Controller
         $userInfo = UserContact::where('user_id', $id)->first();
         return view("allUserSelling", compact('userInfo'));
     }
-    public function getbuying(){
+
+    // buying
+    public function getbuying(Request $request){
         $id = Auth::id();
         $userInfo = UserContact::where('user_id', $id)->first();
-        return view("buying", compact('userInfo'));
+      
+        return view("buying", compact('userInfo',));
     }
+    // seving buy data
+    public function saveBuyData(Request $request) {
+          $seller = $request->get('seller');
+          $buyer = $request->get('buyer');
+          $post = $request->get('post');
+          
+    }   
 
 }

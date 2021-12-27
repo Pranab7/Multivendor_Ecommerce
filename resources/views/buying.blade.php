@@ -102,6 +102,7 @@
     <div class="container">
         <div  id="outContainer" style="width:100%;">
             <h4 class = "text-center text-black pt-2">My Buying Products</h4>
+           
             <hr>
 
             <table id="example" class="table table-bordered table-striped table-hover bookshell" style="width:100%;" align="center">

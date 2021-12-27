@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePostsTable extends Migration
+class CreateUserCartsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,20 +13,18 @@ class CreatePostsTable extends Migration
      */
     public function up()
     {
-        Schema::create('posts', function (Blueprint $table) {
+        Schema::create('user_carts', function (Blueprint $table) {
             $table->id();
+            $table->string('seller_name');
+            $table->string('seller_id');
+            $table->string('buyer_name');
+            $table->string('buyer_id');
             $table->string('game_name');
-            $table->string('game_email');
-            $table->string('game_password');
-            $table->string('game_image');
-            $table->string('game_details');
-            $table->string('security_question');
-            $table->string('game_price');
-            $table->string('contact_info');
-            $table->string('bkash_no');
-            $table->string('author_name');
-            $table->string('user_id');
+            $table->string('email');
             $table->string('status');
+            $table->string('game_password');
+            $table->string('security_q');
+            $table->string('bkash_no');
             $table->timestamps();
         });
     }
@@ -38,6 +36,6 @@ class CreatePostsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('posts');
+        Schema::dropIfExists('user_carts');
     }
 }

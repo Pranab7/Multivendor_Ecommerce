@@ -15,8 +15,16 @@
 
         <!-- Scripts -->
         <script src="{{ asset('js/app.js') }}" defer></script>
+
+        <style>
+            .gg {
+                background: url('{{ asset("image/ee.jpg") }}') !important ;
+                background-size: cover !important;
+                background-repeat: no-repeat !important;
+            }
+        </style>
     </head>
-    <body>
+    <body >
         <div class="font-sans text-gray-900 antialiased">
             {{ $slot }}
         </div>

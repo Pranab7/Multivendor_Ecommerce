@@ -35,10 +35,13 @@ class PostController extends Controller
                 $post->game_email = $request->input('game_email');
                 $post->game_password = $request->input('game_password');
                 $post->game_details	= $request->input('game_details');
+                $post->bkash_no = $request->input('bkash_no');
                 $post->game_image = $filename;
                 $post->security_question = $request->input('question');
                 $post->game_price = $request->input('price');
                 $post->contact_info = $request->input('contact');
+                $post->status = "unsold";
+                $post->author_name = Auth::user()->name;
                 $post->save();
                 return redirect('/');
             }

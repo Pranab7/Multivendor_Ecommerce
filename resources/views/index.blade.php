@@ -41,9 +41,9 @@
             <li><a class="active" href="{{ route('home') }}">Home</a></li>
             <li><a href="/howtobuy">How to buy and Sell</a></li>
             @if(Auth::user())
-            @if($userCategory == "admin")
-            <li><a href="/admin">Admin</a></li>
-            @endif
+              @if($userCategory == "admin")
+              <li><a href="/admin">Admin</a></li>
+              @endif
             @endif
          
             <!-- Drop down semple -->
@@ -148,10 +148,19 @@
                 <img class="card-img-top" src="{{asset('storage')}}/{{$post->game_image}}"  alt="Card image cap">
                     <div class="card-body">
                         <h5 class="card-title">{{ $post->game_name }}</h5>
-                            <p class="card-text">{{ $post->game_ditails }}</p>
+                            <p class="card-text">{{ $post->game_details }}</p>
                             <p class="card-text">Price: {{ $post->game_price }} </p>
-                            <p class="card-text"><small class="text-muted">{{ $post->created_at->diffForHumans() }}</small></p>
-                            <button type="button" class="btn btn-primary">Buy now</button>
+                            <p class="card-text"><small class="text-muted"><b> Seller: {{ $post->author_name }}</b></small></p>
+                            <p class="card-text"><small class="text-muted">{{ $post->created_at->diffForHumans() }} </small></p>
+                            @if($post->status == "unsold")
+                              @if(Auth::user())
+                              <a href="{{url('buynow')}}?seller={{$post->user_id}}&buyer={{Auth::user()->id}}&post={{$post->id}}"  class="btn btn-primary">Buy now</a>
+                              @else
+                              <a href="/login"  class="btn btn-primary">Buy now</a>
+                              @endif
+                            @else 
+                              <p style="color: red; font-size: 18px;text-align:center;background: #ffd4d4;font-weight: 600;">SOLD OUT</p>
+                            @endif
                     </div>
                 </div>
             @endforeach

@@ -52,7 +52,7 @@
                 <li><a href="#" target="_blank"> 404 </a></li>
               </ul>
             </li> -->
-            <li><a href="/pendingOrders" >Pending Orders</a></li>
+            <li><a class="active" href="/pendingOrders" >Pending Orders</a></li>
             <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Orders<span class="caret"></span></a>
               <ul class="dropdown-menu animated zoomIn">
                 <li><a href="/allUserBuying" >All users Orders(buying)</a></li>

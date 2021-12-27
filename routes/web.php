@@ -23,6 +23,8 @@ Route::get('/', [IndexController::class, 'getIndex'])->name('home');
 //buying
 Route::get('/buying', [IndexController::class, 'getbuying']);
 
+// saving buy data
+Route::get('/buynow', [IndexController::class, 'saveBuyData']);
 //how to buy
 Route::get('/howtobuy', [IndexController::class, 'gethowtobuy']);
 
@@ -44,6 +46,8 @@ Route::get("/post",[PostController::class,'getPost'])->middleware(['auth']);
 Route::post('/post', [PostController::class, 'postPost'])->middleware(['auth'])->name('post');
 
 Route::get("/selling",[IndexController::class,'getselling']);
+
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');

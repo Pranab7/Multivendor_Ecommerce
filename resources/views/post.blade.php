@@ -142,6 +142,10 @@
                   <input type="number" name="price" class="form-control" id="formGroupExampleInput2" placeholder="৳-00" >
                 </div>
                 <div class="form-group">
+                  <label for="formGroupExampleInput2">Bkash No</label>
+                  <input type="text" name="bkash_no" class="form-control" id="formGroupExampleInput2" placeholder="Contact info">
+                </div>
+                <div class="form-group">
                   <label for="formGroupExampleInput2">Contact info</label>
                   <input type="text" name="contact" class="form-control" id="formGroupExampleInput2" placeholder="Contact info">
                 </div>

@@ -1,8 +1,9 @@
 <x-guest-layout>
-    <x-auth-card>
+    <x-auth-card >
+  
         <x-slot name="logo">
             <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
+                 <img style="width: 10rem;height: 10rem;object-fit: cover" src="{{ asset('image/logo.png') }}" />
             </a>
         </x-slot>
 
@@ -55,5 +56,6 @@
                 </x-button>
             </div>
         </form>
+  
     </x-auth-card>
 </x-guest-layout>
