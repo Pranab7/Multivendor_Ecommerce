@@ -36,8 +36,10 @@
                 <li><a href="{{ route('home') }}">Home</a></li>
                 <li><a class="active" href="/howtobuy">How to buy and Sell</a></li>
                 @if(Auth::user())
-                <li><a href="/admin">Admin</a></li>
-                @endif
+               @if($userInfo == "admin")
+               <li><a href="/admin">Admin</a></li>
+               @endif
+               @endif
                 <!-- Drop down semple -->
                 <!-- <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Games <span class="caret"></span></a>
                     <ul class="dropdown-menu animated zoomIn">

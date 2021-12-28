@@ -53,12 +53,14 @@
               </ul>
             </li> -->
             <li><a class="active" href="/pendingOrders" >Pending Orders</a></li>
-            <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Orders<span class="caret"></span></a>
+           <!--On Development
+             <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Orders<span class="caret"></span></a>
               <ul class="dropdown-menu animated zoomIn">
                 <li><a href="/allUserBuying" >All users Orders(buying)</a></li>
                 <li><a href="/allUserSelling" >All users Orders (selling)</a></li>
               </ul>
             </li>
+-->
             
             <li><a href="#contact">Contact us</a></li>>
 
@@ -110,40 +112,48 @@
             <h4 class = "text-center text-black pt-2"><strong>Pending Orders</strong></h4>
             <hr>
 
-            <table id="example" class="table table-bordered table-striped table-hover bookshell" style="width:100%;" align="center">
+            <table id="example" class=" text-center table table-bordered table-striped table-hover bookshell" style="width:100%;" align="center">
                 <thead>
                 <tr>
-                    <th scope="col">Seller Name</th>
-                    <th scope="col">Seller ID</th>
-                    <th scope="col">Buyer Name</th>
-                    <th scope="col">Buyer ID</th>
-                    <th scope="col">Game Name</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">Status</th>
-                    <th scope="col">Password</th>
-                    <th scope="col">security QA</th>
-                    <th scope="col">Bkash number</th>
-                    <th scope="col">Action</th>
+                    <th class="text-center" scope="col">Seller Name</th>
+                    <th class="text-center" scope="col">Seller ID</th>
+                    <th class="text-center" scope="col">Buyer Name</th>
+                    <th class="text-center" scope="col">Buyer ID</th>
+                    <th class="text-center" scope="col">Game Name</th>
+                    <th class="text-center" scope="col">Email</th>
+                    <th class="text-center" scope="col">Status</th>
+                    <th class="text-center" scope="col">Password</th>
+                    <th class="text-center" scope="col">security QA</th>
+                    <th class="text-center" scope="col">Bkash number</th>
+                    <th class="text-center" scope="col">Action</th>
 
 
                 </tr>
-                 <tr>
-                    <th scope="col">Seller Name</th>
-                    <th scope="col">Seller ID</th>
-                    <th scope="col">Buyer Name</th>
-                    <th scope="col">Buyer ID</th>
-                    <th scope="col">Game Name</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">Status</th>
-                    <th scope="col">Password</th>
-                    <th scope="col">security QA</th>
-                    <th scope="col">Bkash number</th>
-                    <td><button class='btn btn-primary' onclick=''>Edit</button>
-				           	<button class='btn btn-primary' onclick=''>Delete</button></td>
-
-
-                 </tr>
+                
                 </thead>
+                @isset($userSell)
+                @foreach($userSell as $sell)
+                @if($sell->status != "approved")
+                <tr class="editbuy">
+                    <td scope="col">{{ $sell->seller_name }}</td>
+                    <td scope="col">{{ $sell->seller_id }}</td>
+                    <td scope="col">{{ $sell->buyer_name }}</td>
+                    <td scope="col">{{ $sell->buyer_id }}</td>
+                    <td scope="col">{{ $sell->game_name }}</td>
+                    <td scope="col">{{ $sell->email }}</td>
+                    <td scope="col">{{ $sell->status }}</td>
+                    <td scope="col">{{ $sell->game_password }}</td>
+                    <td scope="col">{{ $sell->security_q }}</td>
+                    <td scope="col">{{ $sell->bkash_no }}</td>
+                    <td>
+                        <a href="{{route('edit-o')}}?cart_id={{$sell->id}}" class='btn btn-primary'>Edit</a>
+                        <a href="{{route('edit-o')}}?cart_id={{$sell->id}}" class='btn btn-primary' style="margin: 2px">Cancel</a>
+				            </td>
+
+                </tr>
+                @endif
+                @endforeach
+                @endisset
 
 
 
@@ -154,84 +164,94 @@
 </table>
 </section>
         
-        <!--    footer -->
-        <section class="footer-part">
-        <div class="container">
-            <div class="row">
-            <div class="col-md-3">
-                <div class="info-part-one320">
-                <h4>About us ?</h4>
-                <p>Here you can buy or sell your games.</p>
-                <h4>Address :</h4>
-                <p>1254,Road2,Kamalapur
-                    <br> Dhaka,1200.</p>
-                <h4>Support :</h4>
-                <p>Support Telephone No : +8801868535004</p>
-                <p>Support Email Account : GameonFire@gmail.com</p>
-                <p>info@example.com</p>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="info-part-two320">
-                <h4>Quick Links</h4>
-                <a href="#">
-                    <p>-Home</p>
-                </a>
-                <a href="#">
-                    <p>-Ask Question</p>
-                </a>
-                <a href="#">
-                    <p>-Questions</p>
-                </a>
-                <a href="#">
-                    <p>-Users</p>
-                </a>
-                <a href="#">
-                    <p>-Profile</p>
-                </a>
-                <a href="#">
-                    <p>-Contact Us</p>
-                </a>
-                <a href="#" class="last-child12892">
-                    <p>-Buy now</p>
-                </a>
-                </div>
-            </div>
-            <div class="col-md-3">
-            <form>
-        <div class="form-group">
-        <label for="exampleFormControlInput1">Email address</label>
-        <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+ <!--    footer -->
+   <!--    footer -->
+   <div class="footer-search">
+    <div class="container">
+      <div class="row">
+        <div id="custom-search-input">
+          <div class="input-group col-md-12"> <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+            <input type="text" class="  search-query form-control user-control30" placeholder="Search here...." /> <span class="input-group-btn">
+              <button class="btn btn-danger" type="button">
+                <span class=" glyphicon glyphicon-search"></span> </button>
+            </span>
+          </div>
         </div>
-        <div class="form-group">
-        <label for="exampleFormControlTextarea1">Example textarea</label>
-        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-        <button class="btn btn-primary" type="submit">Submit form</button>
+      </div>
+    </div>
+  </div>
+  <section class="footer-part">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-3">
+          <div class="info-part-one320">
+            <h4>About us ?</h4>
+            <p>Here you can buy or sell your games.</p>
+            <h4>Address :</h4>
+            <p>1254,Road2,Kamalapur
+              <br> Dhaka,1200.</p>
+            <h4>Support :</h4>
+            <p>Support Telephone No : +8801868535004</p>
+            <p>Support Email Account : GameonFire@gmail.com</p>
+            <p>info@example.com</p>
+          </div>
         </div>
-    </form>
-            </div>
-            
-            </div>
+        <div class="col-md-3">
+          <div class="info-part-two320">
+            <h4>Quick Links</h4>
+            <a href="#">
+              <p>-Home</p>
+            </a>
+            <a href="/howtobuy">
+              <p>-Questions</p>
+            </a>
+            <a href="#">
+              <p>-Users</p>
+            </a>
+            <a href="#">
+              <p>-Profile</p>
+            </a>
+            <a href="#">
+              <p>-Contact Us</p>
+            </a>
+            <a href="#" class="last-child12892">
+              <p>-Buy now</p>
+            </a>
+          </div>
         </div>
-        </section>
-        <section class="footer-social">
-        <div class="container">
-            <div class="row">
-            <div class="col-md-6">
-                <p>Copyright 2021 | <strong>GameOnFire</strong></p>
-            </div>
-            <div class="col-md-6">
-                <div class="social-right2389"> <a href="#"><i class="fa fa-twitter-square" aria-hidden="true"></i></a> <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a> <a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a> <a
-                    href="#"><i class="fa fa-youtube" aria-hidden="true"></i></a> <a href="#"><i class="fa fa-skype" aria-hidden="true"></i></a> <a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a> <a href="#"><i class="fa fa-rss"
-                    aria-hidden="true"></i></a> </div>
-            </div>
-            </div>
-        </div>
-        </section>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-        <script src="js/jquery-3.1.1.min.js"></script>
-        <script src="js/bootstrap.min.js"></script>
-        <script src="js/npm.js"></script>
-    </body>
+        <!-- contact form -->
+        <div class="col-md-6">
 
-    </html>
+          <div class="payments text-center">
+            <h1 style="color:pink"><i>Payment Info<i></h1>
+            <h3 style="color:pink"><i>Bkash<i></h3>
+            <i class="fa fa-credit-card" style="font-size:100px;color:pink"></i>
+            <h5 style="color:pink"><i>008801678192628<i></h5>
+          </div>
+        </div>
+       
+      </div>
+    </div>
+    
+  </section>
+  <section class="footer-social">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <p>Copyright 2021 | <strong>GameOnFire</strong></p>
+        </div>
+        <div class="col-md-6">
+          <div class="social-right2389"> <a href="#"><i class="fa fa-twitter-square" aria-hidden="true"></i></a> <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a> <a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a> <a
+              href="#"><i class="fa fa-youtube" aria-hidden="true"></i></a> <a href="#"><i class="fa fa-skype" aria-hidden="true"></i></a> <a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a> <a href="#"><i class="fa fa-rss"
+                aria-hidden="true"></i></a> </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="js/jquery-3.1.1.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/npm.js"></script>
+</body>
+
+</html>

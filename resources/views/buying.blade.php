@@ -7,6 +7,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
+        <link rel="icon" href="{{asset('img/logo.ico')}}"/>
         <title>GamerOn Fire</title>
         <link href="css/forum_bootstrap.css" rel="stylesheet" type="text/css">
         <link href="css/forum_style.css" rel="stylesheet" type="text/css">
@@ -60,7 +61,7 @@
                 <li class="dropdown" style="margin-left: 30px"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ Auth::user()->name }} <span class="caret"></span></a>
                     <ul class="dropdown-menu animated zoomIn">
                     <li><a href="/editProfile" > Edit Profile </a></li>
-                    <li><a href="/post">post </li>
+                    <li><a href="/post">post </a></li>
                     <li><a href="{{ route('dashboard') }}" > Dashboard </a></li>
                 <!-- logout  -->
                     <li>
@@ -109,30 +110,38 @@
                 <thead>
                 <tr>
                     <th class="text-center" scope="col">Game Name</th>
-                    <th class="text-center" scope="col">Email</th>
                     <th class="text-center" scope="col">Status</th>
+                    <th class="text-center" scope="col">Email</th>
                     <th class="text-center" scope="col">Password</th>
                     <th class="text-center" scope="col">security QA</th>
                     <th class="text-center" scope="col">Bkash number</th>
                     <th class="text-center" scope="col">Action</th>
                 </tr>
                 </thead>
+                
                 @isset($userCart)
                 @foreach($userCart as $cart)
-                <tr>
+                
+                <tr class="editbuy">
                     <td scope="col">{{ $cart->game_name }}</td>
-                    <td scope="col">{{ $cart->email }}</td>
                     <td scope="col">{{ $cart->status }}</td>
+                    @if($cart->status == "approved")
+                    <td scope="col">{{ $cart->email }}</td>
                     <td scope="col">{{ $cart->game_password }}</td>
                     <td scope="col">{{ $cart->security_q }}</td>
-                    <td scope="col">{{ $cart->bkash_no }}</td>
-                    <td><button class='btn btn-primary' onclick=''>Edit</button>
-				    <button class='btn btn-primary' onclick=''>Delete</button></td>
-
+                    @else
+                    <td scope="col">Hidden</td>
+                    <td scope="col">Hidden</td>
+                    <td scope="col">Hidden</td>
+                    @endif
+                    <td class="blurry-text" scope="col">{{ $cart->bkash_no }}</td>
+                    <td>
+                        <a href="{{route('cancel')}}?cart_id={{$cart->id}}&post_id={{$cart->game_id}}" class='btn  btn-primary'>Cancel</a>
+				    </td>
                 </tr>
                 @endforeach
                 @endisset
-
+               
 
 
             </table>
@@ -219,7 +228,7 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
         <script src="js/jquery-3.1.1.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
-        <script src="js/npm.js"></script>
+       
         <script src = "https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     </body>
 

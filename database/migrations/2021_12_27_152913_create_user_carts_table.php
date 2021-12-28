@@ -25,6 +25,7 @@ class CreateUserCartsTable extends Migration
             $table->string('game_password');
             $table->string('security_q');
             $table->string('bkash_no');
+            $table->string('game_id');
             $table->timestamps();
         });
     }

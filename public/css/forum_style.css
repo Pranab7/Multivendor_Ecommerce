@@ -2263,3 +2263,12 @@ h5:hover {
   height: 380px;
   object-fit: cover;
 }
+.blurry-text {
+  color: transparent;
+  text-shadow: 0 0 5px rgba(0,0,0,0.5);
+}
+.paymentcs{
+  padding-right: 200px !important;
+  padding-left: 200px !important;
+  border-left: 300px !important;
+}

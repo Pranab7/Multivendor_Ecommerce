@@ -44,8 +44,7 @@
               @if($userCategory == "admin")
               <li><a href="/admin">Admin</a></li>
               @endif
-            @endif
-         
+            @endif 
             <!-- Drop down semple -->
             <!-- <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Games <span class="caret"></span></a>
               <ul class="dropdown-menu animated zoomIn">
@@ -154,7 +153,12 @@
                             <p class="card-text"><small class="text-muted">{{ $post->created_at->diffForHumans() }} </small></p>
                             @if($post->status == "unsold")
                               @if(Auth::user())
+                              @if(Auth::id() == $post->user_id)
+                              <button  class="btn btn-primary" disabled>Buy now</button>
+                              @else
                               <a href="{{url('buynow')}}?seller={{$post->user_id}}&buyer={{Auth::user()->id}}&post={{$post->id}}"  class="btn btn-primary">Buy now</a>
+
+                              @endif
                               @else
                               <a href="/login"  class="btn btn-primary">Buy now</a>
                               @endif
@@ -283,10 +287,7 @@
             <a href="#">
               <p>-Home</p>
             </a>
-            <a href="#">
-              <p>-Ask Question</p>
-            </a>
-            <a href="#">
+            <a href="/howtobuy">
               <p>-Questions</p>
             </a>
             <a href="#">
@@ -304,22 +305,19 @@
           </div>
         </div>
         <!-- contact form -->
-        <div class="col-md-3" id="contact">
-          <form>
-            <div class="form-group">
-              <label for="exampleFormControlInput1">Email address</label>
-              <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
-            </div>
-            <div class="form-group">
-              <label for="exampleFormControlTextarea1">Example textarea</label>
-              <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-              <button class="btn btn-primary" type="submit">Submit form</button>
-            </div>
-          </form>
+        <div class="col-md-6">
+
+          <div class="payments text-center">
+            <h1 style="color:pink"><i>Payment Info<i></h1>
+            <h3 style="color:pink"><i>Bkash<i></h3>
+            <i class="fa fa-credit-card" style="font-size:100px;color:pink"></i>
+            <h5 style="color:pink"><i>008801678192628<i></h5>
+          </div>
         </div>
        
       </div>
     </div>
+    
   </section>
   <section class="footer-social">
     <div class="container">

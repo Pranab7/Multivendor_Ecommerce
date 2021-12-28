@@ -56,12 +56,14 @@
               </ul>
             </li> -->
             <li><a href="/pendingOrders" >Pending Orders</a></li>
+           <!-- On developement
             <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Orders<span class="caret"></span></a>
               <ul class="dropdown-menu animated zoomIn">
                 <li><a href="/allUserBuying" >All users Orders(buying)</a></li>
                 <li><a href="/allUserSelling" >All users Orders (selling)</a></li>
               </ul>
             </li>
+          -->
             
             <li><a href="#contact">Contact us</a></li>>
 

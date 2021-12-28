@@ -128,27 +128,6 @@
 
 
                 </tr>
-                <tr>
-                    <th scope="col">Seller Name</th>
-                    <th scope="col">Seller ID</th>
-                    <th scope="col">Buyer Name</th>
-                    <th scope="col">Buyer ID</th>
-                    <th scope="col">Game Name</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">Status</th>
-                    <th scope="col">Password</th>
-                    <th scope="col">security QA</th>
-                    <th scope="col">Bkash number</th>
-                    <td><button class='btn btn-primary' onclick=''>Edit</button>
-				           	<button class='btn btn-primary' onclick=''>Delete</button></td>
-
-
-                 </tr>
-                </thead>
-
-
-
-            </table>
         </div>
     </div>
 </div>

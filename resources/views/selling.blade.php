@@ -7,9 +7,11 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
+        <link rel="icon" href="{{asset('img/logo.ico')}}"/>
         <title>GamerOn Fire</title>
         <link href="css/forum_bootstrap.css" rel="stylesheet" type="text/css">
         <link href="css/forum_style.css" rel="stylesheet" type="text/css">
+        <link rel="icon" href="{{asset('img/logo.ico')}}"/>
         <link href="css/forum_editor.css" rel="stylesheet" type="text/css">
         <link href="css/forum_animate.css" rel="stylesheet" type="text/css">
         <link href="css/forum_font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -104,33 +106,37 @@
             <h4 class = "text-center text-black pt-2">My Selling Products</h4>
             <hr>
 
-            <table id="example" class="table table-bordered table-striped table-hover bookshell" style="width:100%;" align="center">
+            <table id="example" class="text-center table table-bordered table-striped table-hover bookshell" style="width:100%;" align="center">
                 <thead>
                 <tr>
-                    <th scope="col">Game Name</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">Status</th>
-                    <th scope="col">Password</th>
-                    <th scope="col">security QA</th>
-                    <th scope="col">Bkash number</th>
-                    <th scope="col">Action</th>
-
-
-                </tr>
-                <tr>
-                    <th scope="col">Game Name</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">Status</th>
-                    <th scope="col">Password</th>
-                    <th scope="col">security QA</th>
-                    <th scope="col">Bkash number</th>
-                    <th scope="col">Action</th>
-                    <td><button class='btn btn-primary' onclick=''>Edit</button>
-				    <button class='btn btn-primary' onclick=''>Delete</button></td>
+                    <th class="text-center"scope="col">Game Name</th>
+                    <th class="text-center"scope="col">Email</th>
+                    <th class="text-center" scope="col">Status</th>
+                    <th class="text-center" scope="col">Password</th>
+                    <th class="text-center" scope="col">security QA</th>
+                    <th class="text-center" scope="col">Bkash number</th>
+                    <th class="text-center" scope="col">Action</th>
 
 
                 </tr>
                 </thead>
+                @isset($userSell)
+                @foreach($userSell as $sell)
+                <tr>
+                    <td scope="col">{{ $sell->game_name }}</td>
+                    <td scope="col">{{ $sell->game_email }}</td>
+                    <td scope="col">{{ $sell->status }}</td>
+                    <td scope="col">{{ $sell->game_password }}</td>
+                    <td scope="col">{{ $sell->security_question }}</td>
+                    <td class="blurry-text" scope="col">{{ $sell->bkash_no }}</td>
+                   <!-- <td>
+                        <a href="{{route('cancel')}}?cart_id={{$sell->id}}&post_id={{$sell->game_id}}" class='btn  btn-primary'>Cancel</a>
+				    </td>
+                    -->
+
+                </tr>
+                @endforeach
+                @endisset
 
 
 

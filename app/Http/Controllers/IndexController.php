@@ -26,12 +26,7 @@ class IndexController extends Controller
         return view('index', compact('userInfo', 'userPost', 'userCategory'));
     }
   
-  
-    public function getselling(){
-        $id = Auth::id();
-        $userInfo = UserContact::where('user_id', $id)->first();
-        return view("selling",compact('userInfo'));
-    }
+
 
     public function gethowtobuy() {
         $id = Auth::id();
@@ -45,14 +40,31 @@ class IndexController extends Controller
         return view('admin', compact('userInfo', 'userPost'));
     }
 
+    // all pending orders
     public function getpendingOrders() {
         $id = Auth::id();
         $userInfo = UserContact::where('user_id', $id)->first();
-        return view('pendingOrders', compact('userInfo'));
+        $userSell = UserCart::all();
+        return view('pendingOrders', compact('userInfo','userSell'));
     }
+    // get edit order
+    public function getEditOrder(Request $request) {
+        $id = Auth::id();
+        $userInfo = UserContact::where('user_id', $id)->first();
+        $cart = UserCart::where('id',$request->get('cart_id'))->first();
+        return view('edit-order', compact('userInfo','cart'));
+    }
+     // post edit order
+     public function postEditOrder(Request $request) {
+         $status = $request->input('status');
+         $cart = UserCart::where('id', $request->input('cart_id'));
+         $cart->update(['status' => $status]);
+         return redirect("pendingOrders");
+     }
     public function getallUserBuying(){
         $id = Auth::id();
         $userInfo = UserContact::where('user_id', $id)->first();
+        $userCart = UserCart::all();
         return view("allUserBuying", compact('userInfo'));
     }
     public function getallUserSelling(){
@@ -61,6 +73,16 @@ class IndexController extends Controller
         return view("allUserSelling", compact('userInfo'));
     }
 
+      // get selling by conditaion
+      public function getselling(Request $request){
+        $id = Auth::id();
+        $seller_id = $request->get('user');
+        $userSell = post::where('user_id', $seller_id)->get();
+        
+        $userInfo = UserContact::where('user_id', $id)->first();
+        
+        return view("selling",compact('userInfo', 'userSell'));
+    }
     // buying
     public function getbuying(Request $request){
         $id = Auth::id();
@@ -68,8 +90,9 @@ class IndexController extends Controller
         $userCart = UserCart::where('buyer_id',$request->get('user'))->get();
         return view("buying", compact('userInfo', "userCart"));
     }
-    // seving buy data
+    // saving buy data
     public function saveBuyData(Request $request) {
+          
           $seller_id = $request->get('seller');
           $buyer_id = $request->get('buyer');
           $post_id = $request->get('post');
@@ -83,14 +106,42 @@ class IndexController extends Controller
           $userCart->buyer_id = $buyer->id;
           $userCart->game_name = $post->game_name;
           $userCart->email = $post->game_email;
-          $userCart->status = "peinding";
+          $userCart->status = "pending";
           $userCart->game_password = $post->game_password;
           $userCart->security_q = $post->security_question;
           $userCart->bkash_no = $post->bkash_no;
+          $userCart->game_id = $post->id;
           $userCart->save();
           $post = Post::where('id', $post_id);
           $post->update(['status' => 'sold']);
           return redirect('buying?user='.$buyer_id);
+
     }   
+
+    public function cancelOrder(Request $request) {
+        $cart_id = $request->get('cart_id');
+        $post_id = $request->get('post_id');
+        
+        $cart = UserCart::where('id', $cart_id)->cursor();
+
+        if(count($cart)) {
+            $cart_buyer = UserCart::where('id', $cart_id)->first();
+        
+    
+            if(Auth::id() != $cart_buyer->buyer_id) {
+                return abort(404);
+            }
+            
+            $delete_cart = UserCart::where('id', $cart_id)->delete();
+            $update_post_status = Post::where('id', $post_id);
+            $update_post_status->update(['status' => 'unsold']);
+            return redirect('buying?user='.Auth::id());
+        }
+        else {
+            return abort(404);
+        }
+        
+       
+    }
 
 }

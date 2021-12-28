@@ -98,53 +98,78 @@
 
   <!-- post section -->
     <section class="container">
-       @if( request()->get('error') )
-            <h4 style="text-align: center;color: red">{{ request()->get('error') }} </h4>
-        @endif
       <div class="post_form">
-      
-            <form method="post" action="{{route('post')}}" enctype="multipart/form-data" >
+        @isset($cart)
+            <form method="post" action="{{route('edit-o')}}" enctype="multipart/form-data" >
               @csrf
               <input  type="hidden" name="user_id" value={{ Auth::user()->id }} />
+              <input type="hidden" name="cart_id" value="{{ $cart->id }}" />
                 <div class="form-group">
-                    <label for="formGroupExampleInput2">Game</label>
-                    <input type="text" name="game_name" class="form-control" id="formGroupExampleInput2" placeholder="Name of the game">
+                    <label for="formGroupExampleInput2">Seller Name</label>
+                    <input type="text" name="game_name" class="form-control" id="formGroupExampleInput2" value="{{$cart->seller_name}}" readonly placeholder="Name of the game">
                 </div>
                 <div class="form-group">
-                  <label for="formGroupExampleInput">Email</label>
-                  <input type="text" name="game_email" class="form-control" id="formGroupExampleInput" placeholder="Email">
+                  <label for="formGroupExampleInput">Seller Id</label>
+                  <input type="text" readonly name="game_email"
+                    value="{{$cart->seller_id}}"
+                  class="form-control" id="formGroupExampleInput" placeholder="Email">
                 </div>
                 <div class="form-group">
-                  <label for="formGroupExampleInput2">password</label>
-                  <input type="password" name="game_password" class="form-control" id="formGroupExampleInput2" placeholder="password">
+                  <label for="formGroupExampleInput2">Buyer Name</label>
+                  <input type="text" name="game_password" class="form-control" 
+                  value="{{ $cart->buyer_name }}" readonly
+                  id="formGroupExampleInput2" placeholder="password">
                 </div>
                 <div class="form-group">
-                  <label for="formGroupExampleInput2">Select Image</label>
-                  <input type="file" name="game_image" class="form-control" id="formGroupExampleInput2" >
+                  <label for="formGroupExampleInput2">Buyer Id</label>
+                  <input type="text" name="game_password" 
+                    value="{{ $cart->buyer_id }}" readonly
+                  class="form-control" id="formGroupExampleInput2" placeholder="password">
                 </div>
                 <div class="form-group">
-                  <label for="formGroupExampleInput2">Details</label>
-                  <input type="text" name="game_details" class="form-control" id="formGroupExampleInput2" placeholder="Game details">
-                </div>
-              
-                <div class="form-group">
-                  <label for="formGroupExampleInput2">Security Question and Answers</label>
-                  <input type="text" name="question" class="form-control" id="formGroupExampleInput2" placeholder="Security Question and Answers">
+                  <label for="formGroupExampleInput2">Game Name</label>
+                  <input type="text" name="game_password"
+                   value="{{ $cart->game_name }}" readonly
+                  class="form-control" id="formGroupExampleInput2" placeholder="password">
                 </div>
                 <div class="form-group">
-                  <label for="formGroupExampleInput2">Price</label>
-                  <input type="number" name="price" class="form-control" id="formGroupExampleInput2" placeholder="৳-00" >
+                  <label for="formGroupExampleInput2">Game email</label>
+                  <input type="text" name="game_password"
+                  value="{{ $cart->email }}" readonly
+                  class="form-control" id="formGroupExampleInput2" placeholder="password">
+                </div>
+                <div class="form-group">
+                  <label for="formGroupExampleInput2">Status</label>
+                  <select name="status" style="text-transform: capitalize">
+                    <option value="{{ $cart->status }}">{{ $cart->status }}</option>
+                    @if($cart->status == "pending")
+                    <option value="approved">Approved</option>
+                    @else
+                    <option value="pending">Pending</option>
+                    @endif
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="formGroupExampleInput2">Password</label>
+                  <input type="text" name="game_password" class="form-control" 
+                  value="{{ $cart->game_password }}" readonly
+                  id="formGroupExampleInput2" placeholder="password">
+                </div>
+                <div class="form-group">
+                  <label for="formGroupExampleInput2">Security Question</label>
+                  <input type="text" name="game_password" class="form-control" 
+                    value="{{ $cart->security_q }}" readonly
+                  id="formGroupExampleInput2" placeholder="password">
                 </div>
                 <div class="form-group">
                   <label for="formGroupExampleInput2">Bkash No</label>
-                  <input type="text" name="bkash_no" class="form-control" id="formGroupExampleInput2" placeholder="Contact info">
-                </div>
-                <div class="form-group">
-                  <label for="formGroupExampleInput2">Contact info</label>
-                  <input type="text" name="contact" class="form-control" id="formGroupExampleInput2" placeholder="Contact info">
+                  <input type="text" name="game_password" class="form-control" 
+                    value="{{ $cart->bkash_no }}" readonly
+                  id="formGroupExampleInput2" placeholder="password">
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>
+            @endisset
       </div>
 
     </section>
@@ -231,4 +256,4 @@
     <script src="js/npm.js"></script>
   </body>
 
-</html>
+  </html>
