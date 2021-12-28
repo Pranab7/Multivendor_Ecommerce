@@ -42,10 +42,8 @@ class UserController extends Controller
                    $user->name = $user_name;
                    $user->email = $user_email;
                    $user->save();
-                  
-             
                    if(count($userContact)) {
-                        $userContact = UserContact::where("user_id",$id);
+                       $userContact = UserContact::where("user_id",$id);
                        $userContact->update(['user_image'=> $filename,"phone_no" => $user_phone]);
                    } else {
                        echo "contact not found";

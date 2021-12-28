@@ -49,8 +49,8 @@
 
                 <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Orders<span class="caret"></span></a>
                     <ul class="dropdown-menu animated zoomIn">
-                    <li><a href="/buying" >My Orders (buying)</a></li>
-                    <li><a href="/selling" >My Orders (selling)</a></li>
+                    <li><a href="/buying?user={{Auth::user()->id}}" >My Orders (buying)</a></li>
+                    <li><a href="/selling?user={{Auth::user()->id}}" >My Orders (selling)</a></li>
                     </ul>
                 </li>
 

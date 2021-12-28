@@ -48,8 +48,8 @@
 
                 <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Orders<span class="caret"></span></a>
                     <ul class="dropdown-menu animated zoomIn">
-                    <li><a href="/selling" >My Orders (buying)</a></li>
-                    <li><a href="/selling" >My Orders (selling)</a></li>
+                    <li><a href="/buying?user={{Auth::user()->id}}" >My Orders (buying)</a></li>
+                    <li><a href="/selling?user={{Auth::user()->id}}" >My Orders (selling)</a></li>
                     </ul>
                 </li>
 
@@ -105,33 +105,33 @@
            
             <hr>
 
-            <table id="example" class="table table-bordered table-striped table-hover bookshell" style="width:100%;" align="center">
+            <table id="example" class="table text-center table-bordered table-striped table-hover bookshell" style="width:100%;" align="center">
                 <thead>
                 <tr>
-                    <th scope="col">Game Name</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">Status</th>
-                    <th scope="col">Password</th>
-                    <th scope="col">security QA</th>
-                    <th scope="col">Bkash number</th>
-                    <th scope="col">Action</th>
-
-
+                    <th class="text-center" scope="col">Game Name</th>
+                    <th class="text-center" scope="col">Email</th>
+                    <th class="text-center" scope="col">Status</th>
+                    <th class="text-center" scope="col">Password</th>
+                    <th class="text-center" scope="col">security QA</th>
+                    <th class="text-center" scope="col">Bkash number</th>
+                    <th class="text-center" scope="col">Action</th>
                 </tr>
+                </thead>
+                @isset($userCart)
+                @foreach($userCart as $cart)
                 <tr>
-                    <th scope="col">Game Name</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">Status</th>
-                    <th scope="col">Password</th>
-                    <th scope="col">security QA</th>
-                    <th scope="col">Bkash number</th>
-                    <th scope="col">Action</th>
+                    <td scope="col">{{ $cart->game_name }}</td>
+                    <td scope="col">{{ $cart->email }}</td>
+                    <td scope="col">{{ $cart->status }}</td>
+                    <td scope="col">{{ $cart->game_password }}</td>
+                    <td scope="col">{{ $cart->security_q }}</td>
+                    <td scope="col">{{ $cart->bkash_no }}</td>
                     <td><button class='btn btn-primary' onclick=''>Edit</button>
 				    <button class='btn btn-primary' onclick=''>Delete</button></td>
 
-
                 </tr>
-                </thead>
+                @endforeach
+                @endisset
 
 
 
@@ -220,6 +220,7 @@
         <script src="js/jquery-3.1.1.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
         <script src="js/npm.js"></script>
+        <script src = "https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     </body>
 
     </html>

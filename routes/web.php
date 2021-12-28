@@ -21,12 +21,12 @@ use Illuminate\Support\Facades\Auth;
 Route::get('/', [IndexController::class, 'getIndex'])->name('home');
 
 //buying
-Route::get('/buying', [IndexController::class, 'getbuying']);
+Route::get('/buying', [IndexController::class, 'getbuying'])->middleware(['auth']);
 
 // saving buy data
-Route::get('/buynow', [IndexController::class, 'saveBuyData']);
+Route::get('/buynow', [IndexController::class, 'saveBuyData'])->middleware(['auth']);
 //how to buy
-Route::get('/howtobuy', [IndexController::class, 'gethowtobuy']);
+Route::get('/howtobuy', [IndexController::class, 'gethowtobuy'])->middleware(['auth']);
 
 // private route
 

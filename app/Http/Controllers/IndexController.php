@@ -8,6 +8,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Post;
 use App\Models\UserCategory;
+use App\Models\UserCart;
 
 class IndexController extends Controller
 {
@@ -64,15 +65,32 @@ class IndexController extends Controller
     public function getbuying(Request $request){
         $id = Auth::id();
         $userInfo = UserContact::where('user_id', $id)->first();
-      
-        return view("buying", compact('userInfo',));
+        $userCart = UserCart::where('buyer_id',$request->get('user'))->get();
+        return view("buying", compact('userInfo', "userCart"));
     }
     // seving buy data
     public function saveBuyData(Request $request) {
-          $seller = $request->get('seller');
-          $buyer = $request->get('buyer');
-          $post = $request->get('post');
-          
+          $seller_id = $request->get('seller');
+          $buyer_id = $request->get('buyer');
+          $post_id = $request->get('post');
+          $seller = User::where('id', $seller_id)->first();
+          $buyer = User::where('id', $buyer_id)->first();
+          $post = Post::where('id', $post_id)->first();
+          $userCart = new UserCart;
+          $userCart->seller_name = $seller->name;
+          $userCart->seller_id = $seller->id;
+          $userCart->buyer_name = $buyer->name;
+          $userCart->buyer_id = $buyer->id;
+          $userCart->game_name = $post->game_name;
+          $userCart->email = $post->game_email;
+          $userCart->status = "peinding";
+          $userCart->game_password = $post->game_password;
+          $userCart->security_q = $post->security_question;
+          $userCart->bkash_no = $post->bkash_no;
+          $userCart->save();
+          $post = Post::where('id', $post_id);
+          $post->update(['status' => 'sold']);
+          return redirect('buying?user='.$buyer_id);
     }   
 
 }
