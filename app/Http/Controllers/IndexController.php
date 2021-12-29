@@ -123,25 +123,30 @@ class IndexController extends Controller
         $post_id = $request->get('post_id');
         
         $cart = UserCart::where('id', $cart_id)->cursor();
-
+        $userCategory = UserCategory::where('email', Auth::user()->email)->first(); 
         if(count($cart)) {
             $cart_buyer = UserCart::where('id', $cart_id)->first();
-        
-    
-            if(Auth::id() != $cart_buyer->buyer_id) {
-                return abort(404);
-            }
             
-            $delete_cart = UserCart::where('id', $cart_id)->delete();
-            $update_post_status = Post::where('id', $post_id);
-            $update_post_status->update(['status' => 'unsold']);
-            return redirect('buying?user='.Auth::id());
+            if($userCategory->user_category === "admin" ) {
+            
+                
+                $delete_cart = UserCart::where('id', $cart_id)->delete();
+                $update_post_status = Post::where('id', $post_id);
+                $update_post_status->update(['status' => 'unsold']);
+                return redirect("pendingOrders");
+            } else {
+                if(Auth::id() != $cart_buyer->buyer_id) {
+                    return abort(404);
+                }
+                $delete_cart = UserCart::where('id', $cart_id)->delete();
+                $update_post_status = Post::where('id', $post_id);
+                $update_post_status->update(['status' => 'unsold']);
+                return redirect('buying?user='.Auth::id());
+            }
         }
         else {
             return abort(404);
-        }
-        
-       
+        }       
     }
 
 }

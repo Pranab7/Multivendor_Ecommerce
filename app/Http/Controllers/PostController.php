@@ -34,9 +34,6 @@ class PostController extends Controller
         if($request->input('game_password') == null){
             $error = true;
         }
-       # if($request->input('game_image') == null){
-          #  $error = true;
-       # }
         if($request->input('game_details') == null){
             $error = true;
         }
@@ -78,13 +75,11 @@ class PostController extends Controller
                 return redirect('/');
             }
             
-         }
-
-    } 
+         } 
     else {
         return redirect("/post?error=You entered empty input");
     }
-             
+}       
     }
 
 }

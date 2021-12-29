@@ -30,6 +30,9 @@ Route::get("/selling",[IndexController::class,'getselling'])->middleware(['auth'
 // cancel order
 Route::get("/cancelorder", [IndexController::class, 'cancelOrder'])->middleware(['auth'])->name('cancel');
 
+// cancel selling
+
+
 //buying
 Route::get('/buying', [IndexController::class, 'getbuying'])->middleware(['auth']);
 

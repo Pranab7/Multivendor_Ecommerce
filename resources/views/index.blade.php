@@ -75,7 +75,7 @@
               <ul class="dropdown-menu animated zoomIn">
                 <li><a href="/editProfile" > Edit Profile </a></li>
                 <li><a href="/post">post </a> </li>
-                <li><a href="{{ route('dashboard') }}" > Dashboard </a></li>
+                <!--<li><a href="{{ route('dashboard') }}" > Dashboard </a></li>-->
              <!-- logout  -->
                 <li>
                    <!-- Authentication -->
@@ -117,22 +117,30 @@
   <section class="welcome-part-one">
     <div class="container">
       <div class="welcome-demop102 text-center">
-        <h2>Welcome to Trolland </h2>
-        <p>Duis dapibus aliquam mi, eget euismod sem scelerisque ut. Vivamus at elit quis urna adipiscing iaculis. Curabitur vitae velit in neque dictum blandit. Proin in iaculis neque. Pellentesque
-          <br> habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Curabitur vitae velit in neque dictum blandit</p>
+        <h2>Welcome to GameOnFire </h2>
+        <p class="mb-0" style="font-size:20px">We support the trading of over 250 games, across all genres and product types
+          <br> We attract a number of sellers with fantastic game accounts available to suit any needs and requirements a buyer may have, such as Fortnite accounts with rare skins like Renegade, League of Legends smurfs, high-level PUBG accounts, Genshin Impact accounts with 5* characters, Overwatch accounts, Valorant accounts, and more.</p>
         <div class="button0239-item">
-          <a href="#">
+          <a href="#contact">
             <button type="button" class="aboutus022">About Us</button>
           </a>
-          <a href="#">
+          @if(Auth::user())
+          <a href="{{ route('home') }}">
             <button type="button" class="join92">Join Now</button>
           </a>
+          @else
+          <a href="/login">
+            <button type="button" class="join92">Join Now</button>
+          </a>
+          @endif
         </div>
-        <div class="form-style8292">
+       <!-- Search
+         <div class="form-style8292">
           <div class="input-group"> <span class="input-group-addon"><i class="fa fa-pencil-square" aria-hidden="true"></i></span>
             <input type="text" class="form-control form-control8392" placeholder="Ask any question and you be sure find your answer ?"> <span class="input-group-addon"><a href="#">Ask Now</a></span> </div>
         </div>
       </div>
+        -->
     </div>
   </section>
 
@@ -254,6 +262,7 @@
   <div class="footer-search">
     <div class="container">
       <div class="row">
+        <!--
         <div id="custom-search-input">
           <div class="input-group col-md-12"> <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
             <input type="text" class="  search-query form-control user-control30" placeholder="Search here...." /> <span class="input-group-btn">
@@ -262,23 +271,24 @@
             </span>
           </div>
         </div>
+        -->
       </div>
     </div>
   </div>
-  <section class="footer-part">
+  <section class="footer-part" id="contact">
     <div class="container">
       <div class="row">
         <div class="col-md-3">
           <div class="info-part-one320">
             <h4>About us ?</h4>
-            <p>Here you can buy or sell your games.</p>
+            <p class="mb-0">Our platform offers marketplaces to provide buyers and sellers with hassle-free trading for game accounts.</p>
             <h4>Address :</h4>
-            <p>1254,Road2,Kamalapur
+            <p class="mb-0">1254,Road2,Kamalapur
               <br> Dhaka,1200.</p>
             <h4>Support :</h4>
-            <p>Support Telephone No : +8801868535004</p>
-            <p>Support Email Account : GameonFire@gmail.com</p>
-            <p>info@example.com</p>
+            <p class="mb-0">Support Telephone No : +8801868535004</p>
+            <p class="mb-0">Support Email Account : GameonFire@gmail.com</p>
+            <p class="mb-0">info@example.com</p>
           </div>
         </div>
         <div class="col-md-3">
