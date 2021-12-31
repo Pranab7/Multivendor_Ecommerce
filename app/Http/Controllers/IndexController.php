@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use App\Models\UserContact;
 use App\Models\User;
@@ -65,12 +66,13 @@ class IndexController extends Controller
         $id = Auth::id();
         $userInfo = UserContact::where('user_id', $id)->first();
         $userCart = UserCart::all();
-        return view("allUserBuying", compact('userInfo'));
+        return view("allUserBuying", compact('userInfo','userCart'));
     }
     public function getallUserSelling(){
         $id = Auth::id();
         $userInfo = UserContact::where('user_id', $id)->first();
-        return view("allUserSelling", compact('userInfo'));
+        $userSell = Post::all();
+        return view("allUserSelling", compact('userInfo','userSell'));
     }
 
       // get selling by conditaion
@@ -82,7 +84,7 @@ class IndexController extends Controller
         $userInfo = UserContact::where('user_id', $id)->first();
         
         return view("selling",compact('userInfo', 'userSell'));
-    }
+        }
     // buying
     public function getbuying(Request $request){
         $id = Auth::id();
@@ -117,6 +119,24 @@ class IndexController extends Controller
           return redirect('buying?user='.$buyer_id);
 
     }   
+    // cancel selling
+    public function cancelsell(Request $request) {
+        // TODO cancell sell
+        $sell_post = $request->get('sell_id');
+        $post = Post::where('id', $sell_post)->delete();
+        return redirect('/selling?user='.Auth::id());
+     
+    }
+    // admin
+    public function cancelselladmin(Request $request) {
+        // TODO cancell sell
+        $sell_post = $request->get('sell_id');
+        $post = Post::where('id', $sell_post)->delete();
+        return redirect('/allUserSelling');
+     
+    }
+
+    // cancel order
 
     public function cancelOrder(Request $request) {
         $cart_id = $request->get('cart_id');
@@ -133,7 +153,12 @@ class IndexController extends Controller
                 $delete_cart = UserCart::where('id', $cart_id)->delete();
                 $update_post_status = Post::where('id', $post_id);
                 $update_post_status->update(['status' => 'unsold']);
-                return redirect("pendingOrders");
+                $currenturi = Route::getFacadeRoot()->current()->uri();
+                if($currenturi != 'allUserSelling') {
+                    return redirect("pendingOrders");
+                } else {
+                    return redirect('allUserSelling');
+                }
             } else {
                 if(Auth::id() != $cart_buyer->buyer_id) {
                     return abort(404);

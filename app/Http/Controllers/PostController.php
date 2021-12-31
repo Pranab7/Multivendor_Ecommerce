@@ -74,12 +74,11 @@ class PostController extends Controller
                 $post->save();
                 return redirect('/');
             }
-            
+        }
          } 
     else {
         return redirect("/post?error=You entered empty input");
-    }
-}       
+    }      
     }
 
 }

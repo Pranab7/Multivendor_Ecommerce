@@ -152,7 +152,7 @@
            <div class="card-group">
             @foreach($userPost as $post) 
               <div class="card" style="margin: 30px 0px;">
-                <img class="card-img-top" src="{{asset('storage')}}/{{$post->game_image}}"  alt="Card image cap">
+                <img class="card-img-top111"src="{{asset('storage')}}/{{$post->game_image}}"  alt="Card image cap">
                     <div class="card-body">
                         <h5 class="card-title">{{ $post->game_name }}</h5>
                             <p class="card-text">{{ $post->game_details }}</p>
@@ -294,7 +294,7 @@
         <div class="col-md-3">
           <div class="info-part-two320">
             <h4>Quick Links</h4>
-            <a href="#">
+            <a href="{{ route('home') }}">
               <p>-Home</p>
             </a>
             <a href="/howtobuy">
@@ -306,10 +306,10 @@
             <a href="#">
               <p>-Profile</p>
             </a>
-            <a href="#">
+            <a href="#contact">
               <p>-Contact Us</p>
             </a>
-            <a href="#" class="last-child12892">
+            <a href="{{ route('home') }}" class="last-child12892">
               <p>-Buy now</p>
             </a>
           </div>

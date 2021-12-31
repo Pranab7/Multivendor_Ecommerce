@@ -110,13 +110,21 @@
         <div class="p-5 text-center bg-light"  style="margin-top: 58px;">
            <h1 class="mb-3">How to buy</h1>
            <h4 class="mb-3">Most frequent question</h4>
-           <p class="mb-3 text-info"> Go to the Home page and click buy button.After that check the My orders(Buying) at the Top.It will show the status pending then you have to pay the amount through Bkash (008801678192628).Ref will be your Username and game name.Once you are done with payment you will get the accounts details within 3days.If payment is not completed within 7 days the account will be again displayed for others. Feel free to contact us for any query or questions. </p>
+           <p class="mb-3 text-info"  style="font-size:15px"> Go to the Home page and click buy button.After that check the My orders(Buying) at the Top.It will show the status pending then you have to pay the amount through Bkash (008801678192628).Ref will be your Username and game name.Once you are done with payment you will get the accounts details within 3days.If payment is not completed within 7 days the account will be again displayed for others. Feel free to contact us for any query or questions. </p>
+           <br>
            <h1 class="mb-3">Is it safe?</h1>
-           <p class="mb-3 text-info">Yes, we check the validity of the account before giving it to you. If we cant deliver the product we will contact you and return your payment. Your account safety is granted.</p>
+           <p class="mb-3 text-info" style="font-size:15px">Trading gaming assets can be risky. Here we check the validity of the account before giving it to you. If we cant deliver the product we will contact you and return your payment.</p>
+           <br>
            <h1 class="mb-3">How to Sell?</h1>
-           <p class="mb-3 text-info">Post your game account in post pages.Add your personal Bkash number to receive the payment .Once your account is sold you will get your payment.<p>
-        </div>
-        <!-- Jumbotron -->
+           <br>
+           <p class="mb-3 text-info" style="font-size:15px">Post your game account in post pages.Add your personal Bkash number to receive the payment .Once your account is sold you will get your payment.<p>
+           <br>
+           <h1 class="mb-3">Can you cancel your sell?</h1>
+           <p class="mb-3 text-info" style="font-size:15px"> Yes, you can cancel your sell but if it has been sold out you can not cancel it. </p>
+          <br>
+          <h1 class="mb-3">Fee?</h1>
+           <p class="mb-3 text-info" style="font-size:15px">It's free to register as a seller and post for-sale offers. Once you make a sale, GameonFire will charge a small transaction fee(5%)</p>
+           <!-- Jumbotron -->
 
             </div>
 
@@ -158,7 +166,7 @@
         <div class="col-md-3">
           <div class="info-part-two320">
             <h4>Quick Links</h4>
-            <a href="#">
+            <a href="{{ route('home') }}">
               <p>-Home</p>
             </a>
             <a href="/howtobuy">
@@ -170,10 +178,10 @@
             <a href="#">
               <p>-Profile</p>
             </a>
-            <a href="#">
+            <a href="#contact">
               <p>-Contact Us</p>
             </a>
-            <a href="#" class="last-child12892">
+            <a href="{{ route('home') }}" class="last-child12892">
               <p>-Buy now</p>
             </a>
           </div>

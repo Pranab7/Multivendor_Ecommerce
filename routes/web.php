@@ -7,6 +7,7 @@ use App\Http\Controllers\UserController;
 use App\Models\UserContact;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -31,8 +32,8 @@ Route::get("/selling",[IndexController::class,'getselling'])->middleware(['auth'
 Route::get("/cancelorder", [IndexController::class, 'cancelOrder'])->middleware(['auth'])->name('cancel');
 
 // cancel selling
-
-
+Route::get('/cancelsell', [IndexController::class, 'cancelsell'])->middleware(['auth'])->name('cancelsell');
+Route::get('/cancelselladmin', [IndexController::class, 'cancelselladmin'])->middleware(['auth'])->name('cancelselladmin');
 //buying
 Route::get('/buying', [IndexController::class, 'getbuying'])->middleware(['auth']);
 
@@ -43,9 +44,17 @@ Route::get('/buynow', [IndexController::class, 'saveBuyData'])->middleware(['aut
 //how to buy
 Route::get('/howtobuy', [IndexController::class, 'gethowtobuy'])->middleware(['auth']);
 
-// private route
+Route::get('/lol', function(Request $request) {
+    echo Route::getFacadeRoot()->current()->uri();
+})->name('hunter');
+
+/**
+ * private route
+ *
+ */
 
 Route::get('/allUserBuying', [IndexController::class, 'getallUserBuying'])->middleware(['auth']);
+
 Route::get('/allUserSelling', [IndexController::class, 'getallUserSelling'])->middleware(['auth']);
 
 //Pending Orders

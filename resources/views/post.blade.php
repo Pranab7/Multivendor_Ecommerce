@@ -186,7 +186,7 @@
         <div class="col-md-3">
           <div class="info-part-two320">
             <h4>Quick Links</h4>
-            <a href="#">
+            <a href="{{ route('home') }}">
               <p>-Home</p>
             </a>
             <a href="/howtobuy">
@@ -198,10 +198,10 @@
             <a href="#">
               <p>-Profile</p>
             </a>
-            <a href="#">
+            <a href="#contact">
               <p>-Contact Us</p>
             </a>
-            <a href="#" class="last-child12892">
+            <a href="{{ route('home') }}" class="last-child12892">
               <p>-Buy now</p>
             </a>
           </div>

@@ -2272,3 +2272,9 @@ h5:hover {
   padding-left: 200px !important;
   border-left: 300px !important;
 }
+.card-img-top111{
+    width: 100%;
+    height: 100%;
+    object-fit:cover;
+    
+}
