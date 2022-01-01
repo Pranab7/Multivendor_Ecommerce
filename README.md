@@ -1,5 +1,5 @@
 # Multivendor_Ecommerce
-It is a Laravel project running through Xamapp where seller and buyer can sell and buy their products.
+It is a Laravel project running through Xampp where seller and buyer can sell and buy their products.
 Create a databse name db_laravel_project.
 Then write php artisan merge to merge the database
 You can either import the database or create your own.
